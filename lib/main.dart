@@ -20,8 +20,8 @@ Future<void> main() async {
   );
   await audioPlayersPlayerService.init();
 
-  // runApp(MainAppJustAudio(audioPlayerService: audioPlayerService));
-  runApp(MainAppAudioplayers(audioPlayerService: audioPlayersPlayerService));
+  runApp(MainAppJustAudio(audioPlayerService: audioPlayerService));
+  // runApp(MainAppAudioplayers(audioPlayerService: audioPlayersPlayerService));
 }
 
 class MainAppJustAudio extends StatelessWidget {

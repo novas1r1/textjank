@@ -32,10 +32,7 @@ class JustAudioPlayerService {
     await justAudioPlayer.setAudioSource(audioSource);
 
     playerStateStream = justAudioPlayer.playerStateStream;
-    positionStream = justAudioPlayer.createPositionStream(
-      minPeriod: const Duration(milliseconds: 250),
-      maxPeriod: const Duration(milliseconds: 250),
-    );
+    positionStream = justAudioPlayer.positionStream;
   }
 
   Future<void> play() async {
