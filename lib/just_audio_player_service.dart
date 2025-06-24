@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audio_session/audio_session.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 
@@ -16,8 +17,8 @@ class JustAudioPlayerService {
   PlayerState? get playerState => justAudioPlayer.playerState;
 
   Future<void> init() async {
-    // final session = await AudioSession.instance;
-    // await session.configure(const AudioSessionConfiguration.music());
+    final session = await AudioSession.instance;
+    await session.configure(const AudioSessionConfiguration.music());
 
     final audioSource = AudioSource.asset(
       'assets/mp3/song.mp3',
@@ -32,7 +33,7 @@ class JustAudioPlayerService {
     await justAudioPlayer.setAudioSource(audioSource);
 
     playerStateStream = justAudioPlayer.playerStateStream;
-    positionStream = justAudioPlayer.positionStream;
+    positionStream = justAudioPlayer.createPositionStream();
   }
 
   Future<void> play() async {

@@ -1,27 +1,26 @@
-import 'package:audioplayers/audioplayers.dart' as audioplayers;
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:textjank/audioplayers_player_service.dart';
 import 'package:textjank/just_audio_player_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  /* await JustAudioBackground.init(
+  await JustAudioBackground.init(
     androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
     androidNotificationChannelName: 'Audio playback',
     androidNotificationOngoing: true,
-  ); */
+  );
 
-  final audioPlayerService = JustAudioPlayerService(justAudioPlayer: AudioPlayer());
-  await audioPlayerService.init();
+  final justaudioPlayerService = JustAudioPlayerService(justAudioPlayer: AudioPlayer());
+  await justaudioPlayerService.init();
+  runApp(MainAppJustAudio(audioPlayerService: justaudioPlayerService));
 
-  final audioPlayersPlayerService = AudioplayersPlayerService(
+  /*   final audioplayersPlayerService = AudioplayersPlayerService(
     audioPlayer: audioplayers.AudioPlayer(),
   );
-  await audioPlayersPlayerService.init();
-
-  runApp(MainAppJustAudio(audioPlayerService: audioPlayerService));
-  // runApp(MainAppAudioplayers(audioPlayerService: audioPlayersPlayerService));
+  await audioplayersPlayerService.init();
+  runApp(MainAppAudioplayers(audioPlayerService: audioplayersPlayerService)); */
 }
 
 class MainAppJustAudio extends StatelessWidget {
